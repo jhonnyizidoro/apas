@@ -1,0 +1,25 @@
+nav.navbar
+	.navbar__top
+		a.navbar__link(href="/admin/noticias")
+			.navbar__icon.icon.icon--news
+			.navbar__text Notícias
+		a.navbar__link(href="/admin/contatos")
+			.navbar__icon.icon.icon--telephone
+			.navbar__text Contatos
+		a.navbar__link(href="/admin/usuarios")
+			.navbar__icon.icon.icon--user
+			.navbar__text Usuários
+		a.navbar__link(href="/admin/paginas")
+			.navbar__icon.icon.icon--page
+			.navbar__text Páginas
+		a.navbar__link(href="/admin/configuracoes")
+			.navbar__icon.icon.icon--settings
+			.navbar__text Configurações
+	.navbar__bottom
+		.navbar__text=session.user.email
+		a.navbar__strong(href="/autenticacao/logout") Sair
+
+script.
+	document.addEventListener('DOMContentLoaded', function () {
+		Navbar.admin();
+	});

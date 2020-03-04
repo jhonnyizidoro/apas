@@ -3,6 +3,8 @@ html(lang="pt-br")
 	head
 	include ../../global/Head
 	body
-		block Content
+		include ../components/Navbar
+		.content
+			block Content
 		script(src=asset('/js/app.js'))
 		block Scripts

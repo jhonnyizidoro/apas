@@ -1,6 +1,6 @@
 const express = require('express'),
 	router = express.Router(),
-	{login} = require('../../services/login')
+	{login} = require('../../services/auth')
 
 router.get('/', (req, res) => {
 	const seo = {
@@ -15,17 +15,24 @@ router.get('/', (req, res) => {
 	req.session.save()
 })
 
+router.get('/logout', (req, res) => {
+	delete req.session.user
+	req.session.message = 'Logout efetuado com sucesso!'
+	req.session.save()
+	res.redirect('/autenticacao')
+})
+
 router.post('/', (req, res) => {
 	const data = {
 		email: req.body.email,
 		password: req.body.password,
 	}
 	login(data).then(user => {
-		req.session.user = user.id
-		res.redirect('/admin')
+		req.session.user = user
+		res.redirect('/admin/noticias')
 	}).catch(error => {
 		req.session.message = error
-		res.redirect('/login')
+		res.redirect('/autenticacao')
 	})
 })
 

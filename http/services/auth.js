@@ -9,7 +9,7 @@ const login = data => new Promise((resolve, reject) => {
 		} else if (result.length === 0) {
 			reject('Não encontramos nenhum usuário com essas credenciais.')
 		} else {
-			resolve(result)
+			resolve(result[0])
 		}
 	})
 })
