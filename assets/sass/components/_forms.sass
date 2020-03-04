@@ -15,9 +15,29 @@
 .default
 	&__group
 		+flex
+		margin: 20px 0
 		>*:not(:last-child)
 			margin-right: 10px
 	&__select
 		flex-grow: 1
 	&__input
 		flex-grow: 3
+	&__image
+		border-radius: 10px
+		box-shadow: $shadow-2
+		display: block
+		margin: 0 auto
+		width: 400px
+	&__file
+		position: relative
+		&:hover
+			box-shadow: $shadow-1
+			transform: scale(1.03)
+		&::after
+			+font($w: $font-2, $c: $white)
+			+position(0, 0)
+			+size(100%)
+			+flex(center, center)
+			background: $orange
+			content: 'SELECIONAR IMAGEM'
+			cursor: pointer

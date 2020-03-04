@@ -13,7 +13,9 @@ const uploadImage = file => {
 
 	file.mv(`${rootPath}/storage/${name}`)
 
-	return `/storage/${name}`
+	return {
+		location: `/storage/${name}`
+	}
 }
 
 module.exports = {

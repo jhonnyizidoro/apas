@@ -25,6 +25,7 @@ app.use(compression())
 app.use(express.urlencoded({ extended: false }))
 app.use('/', express.static(`${__dirname}/public`))
 app.use('/', express.static(`${__dirname}/public/global`))
+app.use('/storage', express.static(`${__dirname}/storage`))
 app.use(assets('/', `${__dirname}/public`))
 app.use(fileUpload({}))
 app.use(session({

@@ -3,7 +3,7 @@ const express = require('express'),
 	auth = require('../../middlewares/auth'),
 	{uploadImage} = require('../../services/image')
 
-router.post('/', (req, res) => {
+router.post('/', auth(), (req, res) => {
 	const path = uploadImage(req.files.file)
 	res.send(path)
 })
