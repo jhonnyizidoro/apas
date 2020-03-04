@@ -1,13 +1,14 @@
 extends templates/main
 block Content
-	form.form__group
-		select.form__group__select(name="order", aria-label="Selecione a ordenação")
-			option(value="") Ordenar por
-			option(value="0") Mais recentes
-			option(value="1") Mais antigos
-		input.form__group__input(type="text", name="search", placeholder="Palavras chave", aria-label="Busque sua notícia")
-		button.button.button--small(aria-label="Clique para realizar sua pesquisa", type="submit") #[.icon.icon--search]
-		a.button.button--green(href="/admin/noticias/adicionar") ADICIONAR NOTÍCIA
+	form.default
+		.default__group
+			select.default__select(name="order", aria-label="Selecione a ordenação")
+				option(value="") Ordenar por
+				option(value="0") Mais recentes
+				option(value="1") Mais antigos
+			input.default__input(type="text", name="search", placeholder="Palavras chave", aria-label="Busque sua notícia")
+			button.button.button--orange(aria-label="Clique para realizar sua pesquisa", type="submit") #[.button--icon.icon.icon--search]
+			a.button.button--green(href="/admin/noticias/formulario") ADICIONAR NOTÍCIA
 	section.cards
 		each auxNews in news
 			.card__wrapper

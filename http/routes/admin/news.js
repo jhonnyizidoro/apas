@@ -23,4 +23,15 @@ router.get('/', auth(), (req, res) => {
 	})
 })
 
+router.get('/formulario', auth(), (req, res) => {
+	const seo = {
+		title: APP_NAME,
+		description: '',
+		keywords: '',
+	}
+	res.render('admin/newsForm', {
+		seo,
+	})
+})
+
 module.exports = router

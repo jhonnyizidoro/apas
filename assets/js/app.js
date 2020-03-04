@@ -1,5 +1,5 @@
 window.LazyLoad = require('./modules/LazyLoad')
-window.Navbar = require('./modules/Navbar')
+window.Admin = require('./modules/Admin')
 
 document.addEventListener('DOMContentLoaded', () => {
 	LazyLoad.observe()

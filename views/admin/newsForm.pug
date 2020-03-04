@@ -1,0 +1,13 @@
+extends templates/main
+block Content
+	form.default
+		img.default__image(src="/images/no-image.png", alt="Selecione uma imagem", title="Selecione uma imagem")
+		.default__group
+			input.default__input(type="text", name="title", placeholder="Título da notícia", aria-label="Título da notícia")
+			button.button.button--orange(aria-label="Clique para selecionar uma imagem", type="button") SELECIONAR IMAGEM #[.button--icon.icon.icon--image]
+
+block Scripts
+	script.
+		window.addEventListener('load', function () {
+			Admin.editor();
+		});
