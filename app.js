@@ -4,7 +4,8 @@ const assets = require('express-asset-versions'),
 	helpers = require('./http/helpers/helpers'),
 	express = require('express'),
 	env = require('./env'),
-	session = require('express-session')
+	session = require('express-session'),
+	fileUpload = require('express-fileupload')
 
 //Init express
 const app = express()
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/', express.static(`${__dirname}/public`))
 app.use('/', express.static(`${__dirname}/public/global`))
 app.use(assets('/', `${__dirname}/public`))
+app.use(fileUpload({ limits: { fileSize: 5 * 1024 * 1024 }, }))
 app.use(session({
 	saveUninitialized: true,
 	secret: 'apasNodeJS',
@@ -33,7 +35,7 @@ app.use(session({
 app.use((req, res, next) => {
 	global.host = `${req.protocol}://${req.get('host')}`
 	global.url = `${global.host}${req.url}`
-	global.path = req.url
+	global.rootPath = __dirname
 	res.locals.session = req.session
 	next()
 })

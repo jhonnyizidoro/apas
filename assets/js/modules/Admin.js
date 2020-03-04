@@ -7,14 +7,20 @@ const navbar = () => {
 	})
 }
 
-const editor = () => {
-	const textarea = document.querySelector('textarea')
-	ClassicEditor.create(textarea)
-		.then(editor => console.log(editor))
-		.catch(error => console.log(eror))
+const tinyMCE = () => {
+	tinymce.init({
+		selector: 'textarea',
+		language: 'pt_BR',
+		plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen preview',
+		images_upload_url: "/admin/upload",
+		entity_encoding : "raw",
+		mobile: {
+			theme: 'mobile'
+		},
+	})
 }
 
 export {
 	navbar,
-	editor,
+	tinyMCE,
 }

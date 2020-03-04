@@ -13,5 +13,5 @@ const getNews = () => new Promise((resolve, reject) => {
 })
 
 module.exports = {
-	getNews ,
+	getNews,
 }
