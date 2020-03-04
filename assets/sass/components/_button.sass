@@ -1,4 +1,10 @@
 .button
 	border: none
+	border-radius: 6px
+	box-shadow: $shadow-2
 	display: inline-block
 	transition: 250ms
+	&--green
+		+font($w: $font-2, $c: $white)
+		background: $green
+		padding: 12px

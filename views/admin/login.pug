@@ -1,2 +1,8 @@
 extends templates/login
 block Content
+	form.login(action="/login", method="POST")
+		img.login__image(src="/images/logo.png", title=APP_NAME, alt=APP_NAME)
+		input.login__input(type="text", name="email", inputmode="email", placeholder="Email", aria-label="Email")
+		input.login__input(type="password", name="password", placeholder="Senha", aria-label="Senha")
+		button.button.button--green(type="submit", aria-label="Efetuar o login") EFETUAR O LOGIN
+		small.login__error=session.message
