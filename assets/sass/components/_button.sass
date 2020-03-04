@@ -1,10 +1,19 @@
 .button
 	border: none
 	border-radius: 6px
-	box-shadow: $shadow-2
+	box-shadow: $shadow-1
 	display: inline-block
 	transition: 250ms
+	&:hover
+		box-shadow: $shadow-1
+		transform: scale(1.03)
 	&--green
 		+font($w: $font-2, $c: $white)
 		background: $green
 		padding: 12px
+	&--small
+		+font(1.5rem, $c: $white)
+		background: $orange
+		padding: 7px 15px
+		&:not(:last-child)
+			margin-right: 10px

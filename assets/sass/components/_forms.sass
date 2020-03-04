@@ -11,3 +11,15 @@
 	&__error
 		+font($a: center, $c: $error)
 		margin-top: 6px
+
+.form__group
+	+flex
+	&__input,
+	&__select
+		margin-right: 10px
+	&__select
+		flex-grow: 1
+		min-width: 180px
+	&__input
+		flex-grow: 3
+		min-width: 300px
