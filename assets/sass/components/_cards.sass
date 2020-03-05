@@ -1,0 +1,38 @@
+.cards
+	+flex(center, $w: wrap)
+
+.card
+	background: $white
+	border-radius: 10px
+	box-shadow: $shadow-1
+	height: 100%
+	overflow: hidden
+	padding-bottom: 52px
+	position: relative
+	transition: 350ms $cubic-bezier
+	width: 300px
+	&__wrapper
+		padding: 10px
+	&__figure
+		+keep-ratio(4, 3)
+	&__title
+		+font(1.3rem, $font-2, $a: center)
+		margin: 10px
+	&__footer
+		+flex(space-between, center)
+		+position($b: 0, $r: 0)
+		border-top: 1px solid $light
+		margin: 0 5%
+		padding: 10px 0
+		width: 90%
+	&__date
+		+flex
+		color: $muted
+	&__date__icon
+		margin-right: 2px
+		transform: translateY(2px)
+	&__buttons>*:not(:last-child)
+		margin-right: 7px
+	&:hover
+		box-shadow: $shadow-2
+		transform: scale(1.02)

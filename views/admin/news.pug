@@ -15,3 +15,11 @@ block Content
 				.card
 					figure.card__figure
 						img.card__image(data-src=auxNews.image, alt=auxNews.title, title=auxNews.title, loading="lazy")
+					h1.card__title=auxNews.title
+					.card__footer
+						.card__date
+							.card__date__icon.icon.icon--calendar
+							.card__date__text=formatDate(auxNews.created_at)
+						.card__buttons
+							a.button.button--green.button--small(href=`/admin/noticias/formulario/${auxNews.id}`) #[.icon.icon--edit]
+							a.button.button--orange.button--small(href=`/admin/noticias/status/${auxNews.id}`) #[.icon.icon--delete]

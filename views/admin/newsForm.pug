@@ -1,11 +1,13 @@
 extends templates/main
 block Content
-	form.default
+	form.default(method="POST", action="/admin/noticias/formulario", enctype="multipart/form-data")
 		img.default__image(src="/images/no-image.png", alt="Selecione uma imagem", title="Selecione uma imagem")
 		.default__group
 			input.default__input(type="text", name="title", placeholder="Título da notícia", aria-label="Título da notícia")
-			input.default__file(type="file", placeholder="SELECIONAR IMAGEM")
+			input.default__file(type="file", name="image", data-placeholder="SELECIONAR IMAGEM", aria-label="Clique para selecionar uma imagem", accept="image/jpg,image/jpeg,image/png")
 		textarea(name="content", placeholder="Conteúdo da notícia", aria-label="Insira o conteúdo da notícia")
+		.default__submit
+			button.button.button--green(type="submit", aria-label="Salvar notícia") SALVAR NOTÍCIA
 
 block Scripts
 	script(src="/tinymce/tinymce.min.js")

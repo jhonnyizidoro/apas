@@ -26,7 +26,10 @@ const tinyMCE = () => {
 const preview = () => {
 	const input = document.querySelector('.default__file')
 	const image = document.querySelector('.default__image')
-	on('change', input, () => image.src = URL.createObjectURL(input.files[0]))
+	on('change', input, () => {
+		image.src = URL.createObjectURL(input.files[0])
+		input.dataset.placeholder = 'ALTERAR IMAGEM'
+	})
 }
 
 export {
