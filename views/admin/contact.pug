@@ -1,0 +1,27 @@
+extends templates/main
+block Content
+	form.default(method="POST", action="/admin/contato")
+		.default__title Telefones
+		each phone in phones
+			.default__group
+				select.default__select(name="type", aria-label="Selecione o tipo")
+					option Selecione o tipo
+					option(selected=phone.type === 'WhatsApp') WhatsApp
+					option(selected=phone.type === 'Comercial') Comercial
+				input.default__input(type="text", name="phone", placeholder="Número", aria-label="Insira o número de telefone", value=phone.number)
+				button.button.button--orange(type="button", aria-label=`Excluir o número ${phone.number}`) #[.button--icon.icon.icon--delete]
+		button.button.button--green.button--small(type="button", aria-label="Adicionar outro número") ADICIONAR OUTRO
+		.default__title Redes sociais
+		input.default__input(type="text", name="facebook", placeholder="Facebook", aria-label="Insira o facebook", value=facebook)
+		input.default__input(type="text", name="instagram", placeholder="Instagram", aria-label="Insira o instagram", value=instagram)
+		.default__title Outras informações
+		input.default__input(type="text", name="address", placeholder="Endereço completo", aria-label="Insira o endereço completo", value=app.address)
+		input.default__input(type="text", name="business_hours", placeholder="Horário de atendimento", aria-label="Insira o horário de atendimento", value=app.business_hours)
+		.default__submit
+			button.button.button--green(type="submit", aria-label="Salvar contatos") SALVAR CONTATOS
+
+block Scripts
+	script.
+		window.addEventListener('load', function () {
+			Admin.phoneInput();
+		});

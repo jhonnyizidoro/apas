@@ -15,20 +15,24 @@
 .default
 	>*
 		margin-bottom: 20px
-	&__group
-		+flex
-		>*:not(:last-child)
-			margin-right: 10px
+	&__title
+		+font(1.6rem, $font-2)
 	&__select
 		flex-grow: 1
 	&__input
 		flex-grow: 3
+		width: 100%
 	&__image
 		border-radius: 10px
 		box-shadow: $shadow-2
 		display: block
 		height: 300px
 		margin: 0 auto 20px
+	&__group
+		+flex
+		>*:not(:last-child)
+			margin-right: 10px
+			width: auto
 	&__file
 		position: relative
 		&:hover

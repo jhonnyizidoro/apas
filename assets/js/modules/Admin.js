@@ -1,4 +1,5 @@
 import {on} from '../functions/EventHandler'
+import {showAlert} from './Alert'
 
 const navbar = () => {
 	const links = document.querySelectorAll('.navbar__link')
@@ -32,8 +33,34 @@ const preview = () => {
 	})
 }
 
+const phoneInput = () => {
+	const addButton = document.querySelector('.button--small')
+	const deleteButtons = document.querySelectorAll('.button--orange')
+	phoneDeleteButtons(deleteButtons)
+
+	on('click', addButton, () => {
+		const formGroup = document.querySelector('.default__group').cloneNode(true)
+		const deleteButton = formGroup.querySelector('button')
+		formGroup.querySelector('input').value = null
+		formGroup.querySelector('select').selectedIndex = 0
+		addButton.parentNode.insertBefore(formGroup, addButton)
+		phoneDeleteButtons([deleteButton])
+	})
+}
+
+const phoneDeleteButtons = buttons => {
+	on('click', buttons, button => {
+		if (document.querySelectorAll('.default__group').length > 1) {
+			button.parentNode.remove()
+		} else {
+			showAlert('Erro!', 'É necessário ter ao menos um telefone cadastrado!')
+		}
+	})
+}
+
 export {
 	navbar,
 	tinyMCE,
 	preview,
+	phoneInput,
 }

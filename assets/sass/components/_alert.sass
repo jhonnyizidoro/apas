@@ -1,0 +1,34 @@
+.alert
+	+position(0, 0, $p: fixed)
+	+size(100%)
+	background: rgba($black, .45)
+	text-align: center
+	z-index: 99
+	&__modal
+		+position(50%, 50%)
+		animation: showAlert 400ms forwards
+		background: $white
+		border-radius: 7px
+		box-shadow: $shadow-1
+		max-width: 500px
+		padding: 20px
+		transform-origin: 100% 0
+	&__title
+		+font(1.8rem, $font-2)
+	&__content
+		+font(1.1rem, $lh: 1.6)
+		margin: 10px 0 20px
+	&__close
+		+font(1.1rem, $font-2, $c: $white)
+		background: $green
+		border: 0
+		border-radius: 7px
+		padding: 8px 16px
+
+@keyframes showAlert
+	0%
+		opacity: 0
+		transform: scale(0) translate(50%, -50%)
+	100%
+		opacity: 1
+		transform: scale(1) translate(50%, -50%)
