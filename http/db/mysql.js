@@ -7,6 +7,7 @@ module.exports = () => {
 		password: DATABASE.PASSWORD,
 		database: DATABASE.NAME,
 		timezone: 'UTC',
+		multipleStatements: true,
 	})
 	connection.connect()
 	return connection

@@ -53,9 +53,9 @@ router.post('/formulario', auth(), (req, res) => {
 })
 
 router.get('/status/:id', auth(), (req, res) => {
-	changeNewsStatus(req.params.id).then(res => {
+	changeNewsStatus(req.params.id).then(() => {
 		req.session.message = 'Alterações salvas com sucesso.'
-		res.redirect('back')
+		res.redirect('/admin/noticias')
 	}).catch(error => {
 		req.session.message = error
 		res.redirect('/admin/noticias')

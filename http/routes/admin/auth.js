@@ -23,11 +23,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-	const data = {
-		email: req.body.email,
-		password: req.body.password,
-	}
-	login(data).then(user => {
+	login(req.body).then(user => {
 		req.session.user = user
 		res.redirect('/admin/noticias')
 	}).catch(error => {

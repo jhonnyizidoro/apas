@@ -1,7 +1,7 @@
 const express = require('express'),
 	router = express.Router(),
 	auth = require('../../middlewares/auth'),
-	{getPhones, getApp} = require('../../services/contact')
+	{getPhones, getApp, savePhones, saveApp} = require('../../services/contact')
 
 router.get('/', auth(), (req, res) => {
 	const seo = {
@@ -25,8 +25,14 @@ router.get('/', auth(), (req, res) => {
 	})
 })
 
-router.post('/', (req, res) => {
-
+router.post('/', auth(), (req, res) => {
+	Promise.all([savePhones(req.body), saveApp(req.body)]).then(() => {
+		req.session.message = 'Contato atualizado com sucesso.'
+		res.redirect('/admin/contato')
+	}).catch(error => {
+		req.session.message = error
+		res.redirect('back')
+	})
 })
 
 module.exports = router

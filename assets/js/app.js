@@ -1,5 +1,6 @@
 window.LazyLoad = require('./modules/LazyLoad')
 window.Admin = require('./modules/Admin')
+window.Alert = require('./modules/Alert')
 
 document.addEventListener('DOMContentLoaded', () => {
 	LazyLoad.observe()

@@ -1,0 +1,5 @@
+if session.message
+	script.
+		window.addEventListener('load', () => {
+			Alert.showAlert('Alerta!', '#{session.message}')
+		})
