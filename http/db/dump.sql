@@ -1,5 +1,15 @@
 -- CREATE DATABASE
+DROP SCHEMA IF EXISTS apas;
 CREATE DATABASE apas CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE apas;
+
+-- DROP
+DROP TABLE IF EXISTS banners;
+DROP TABLE IF EXISTS pages;
+DROP TABLE IF EXISTS phones;
+DROP TABLE IF EXISTS apps;
+DROP TABLE IF EXISTS news;
+DROP TABLE IF EXISTS users;
 
 -- CREATE TABLES
 CREATE TABLE users (
@@ -51,13 +61,6 @@ CREATE TABLE banners (
      link VARCHAR(255) DEFAULT NULL
 );
 
--- DROP
-DROP TABLE IF EXISTS banners;
-DROP TABLE IF EXISTS pages;
-DROP TABLE IF EXISTS phones;
-DROP TABLE IF EXISTS apps;
-DROP TABLE IF EXISTS news;
-DROP TABLE IF EXISTS users;
 
 -- SEED
 INSERT INTO apps (logo, address, business_hours) VALUES ('https://logomaster.ai/static/media/gallery002.936afb9d.png', 'Adão Sobocinski, 161, Cristo Rei', 'De segunda a segunda das 08:00 as 18:00');
