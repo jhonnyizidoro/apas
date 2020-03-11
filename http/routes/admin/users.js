@@ -4,14 +4,8 @@ const express = require('express'),
 	{getUsers, saveUser, changeUserProfile, changeUserPassword, changeUserStatus} = require('../../services/users')
 
 router.get('/', auth(), (req, res) => {
-	const seo = {
-		title: APP_NAME,
-		description: '',
-		keywords: '',
-	}
 	getUsers().then(users => {
 		res.render('admin/users', {
-			seo,
 			users,
 		})
 	}).catch(error => {

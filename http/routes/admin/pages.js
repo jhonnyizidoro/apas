@@ -4,14 +4,8 @@ const express = require('express'),
 	{getPages, getPage, savePage} = require('../../services/pages')
 
 router.get('/', auth(), (req, res) => {
-	const seo = {
-		title: APP_NAME,
-		description: '',
-		keywords: '',
-	}
 	getPages().then(pages => {
 		res.render('admin/pages', {
-			seo,
 			pages,
 		})
 	}).catch(error => {
@@ -24,14 +18,8 @@ router.get('/', auth(), (req, res) => {
 })
 
 router.get('/formulario/:id', auth(), (req, res) => {
-	const seo = {
-		title: APP_NAME,
-		description: '',
-		keywords: '',
-	}
 	getPage(req.params.id).then(page => {
 		res.render('admin/pagesForm', {
-			seo,
 			page,
 		})
 	}).catch(error => {

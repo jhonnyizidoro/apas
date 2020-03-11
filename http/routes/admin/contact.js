@@ -4,15 +4,8 @@ const express = require('express'),
 	{getPhones, getApp, savePhones, saveApp} = require('../../services/contact')
 
 router.get('/', auth(), (req, res) => {
-	const seo = {
-		title: APP_NAME,
-		description: '',
-		keywords: '',
-	}
-
 	Promise.all([getPhones(), getApp()]).then(([phones, app]) => {
 		res.render('admin/contact', {
-			seo,
 			phones,
 			app,
 		})

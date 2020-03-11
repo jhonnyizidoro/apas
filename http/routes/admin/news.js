@@ -5,14 +5,8 @@ const express = require('express'),
 	{uploadImage} = require('../../services/image')
 
 router.get('/', auth(), (req, res) => {
-	const seo = {
-		title: APP_NAME,
-		description: '',
-		keywords: '',
-	}
 	getNews().then(news => {
 		res.render('admin/news', {
-			seo,
 			news,
 		})
 	}).catch(error => {
@@ -25,14 +19,7 @@ router.get('/', auth(), (req, res) => {
 })
 
 router.get('/formulario', auth(), (req, res) => {
-	const seo = {
-		title: APP_NAME,
-		description: '',
-		keywords: '',
-	}
-	res.render('admin/newsForm', {
-		seo,
-	})
+	res.render('admin/newsForm')
 })
 
 router.post('/formulario', auth(), (req, res) => {

@@ -3,14 +3,7 @@ const express = require('express'),
 	{login} = require('../../services/auth')
 
 router.get('/', (req, res) => {
-	const seo = {
-		title: APP_NAME,
-		description: '',
-		keywords: '',
-	}
-	res.render('admin/login', {
-		seo,
-	})
+	res.render('admin/login')
 	delete req.session.message
 	req.session.save()
 })
