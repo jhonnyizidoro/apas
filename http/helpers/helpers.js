@@ -1,4 +1,8 @@
 const formatDate = date => `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} - ${date.getUTCHours()}:${date.getUTCMinutes()}`
+const textPreview = string => {
+	const stripped = string.replace(/<[^>]*>/g, '').slice(0, 300)
+	return string.length > 300 ? `${stripped}...` : stripped
+}
 
 const getSchemaJSON = () => {
 	return `
@@ -40,4 +44,5 @@ const getSchemaJSON = () => {
 module.exports = {
 	getSchemaJSON,
 	formatDate,
+	textPreview,
 }

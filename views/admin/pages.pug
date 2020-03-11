@@ -5,6 +5,6 @@ block Content
 			.card__wrapper
 				.card
 					.card__title=page.name
-					.card__text #{page.content.slice(0, 300)}...
+					.card__text=textPreview(page.content)
 					.card__footer
 						a.button.button--green.button--fullwidth.button--small(href=`/admin/paginas/formulario/${page.id}`) EDITAR CONTEÚDO

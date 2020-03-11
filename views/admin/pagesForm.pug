@@ -1,0 +1,15 @@
+extends templates/main
+block Content
+	form.default(method="POST", action="/admin/paginas/formulario")
+		input(type="hidden", name="id", value=page.id)
+		input.default__input(type="text", name="name", placeholder="Nome da página", aria-label="Nome da página", value=page.name)
+		textarea(name="content", placeholder="Conteúdo da página", aria-label="Insira o conteúdo da página")!=page.content
+		.default__submit
+			button.button.button--green(type="submit", aria-label="Salvar página") SALVAR PÁGINA
+
+block Scripts
+	script(src="/tinymce/tinymce.min.js")
+	script.
+		window.addEventListener('load', function () {
+			Admin.tinyMCE();
+		});
