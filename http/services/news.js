@@ -1,6 +1,6 @@
 const mysql = require('../db/mysql')
 
-const getNews = () => new Promise((resolve, reject) => {
+const getAllNews = () => new Promise((resolve, reject) => {
 	const db = mysql()
 	const query = `SELECT * FROM news WHERE status ORDER BY id DESC`
 	db.query(query, (error, result) => {
@@ -36,8 +36,21 @@ const changeNewsStatus = id => new Promise((resolve, reject) => {
 	})
 })
 
+const getNews = id => new Promise((resolve, reject) => {
+	const db = mysql()
+	const query = `SELECT * FROM news WHERE id = ${db.escape(id)}`
+	db.query(query, (error, [result]) => {
+		if (error) {
+			reject(error.sqlMessage)
+		} else {
+			resolve(result || {})
+		}
+	})
+})
+
 module.exports = {
-	getNews,
+	getAllNews,
 	saveNews,
 	changeNewsStatus,
+	getNews,
 }

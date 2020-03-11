@@ -1,13 +1,13 @@
 const express = require('express'),
 	router = express.Router(),
 	auth = require('../../middlewares/auth'),
-	{getNews, saveNews, changeNewsStatus} = require('../../services/news'),
+	{getAllNews, saveNews, changeNewsStatus, getNews} = require('../../services/news'),
 	{uploadImage} = require('../../services/image')
 
 router.get('/', auth(), (req, res) => {
-	getNews().then(news => {
+	getAllNews().then(allNews => {
 		res.render('admin/news', {
-			news,
+			allNews,
 		})
 	}).catch(error => {
 		req.session.message = error
@@ -18,8 +18,18 @@ router.get('/', auth(), (req, res) => {
 	})
 })
 
-router.get('/formulario', auth(), (req, res) => {
-	res.render('admin/newsForm')
+router.get('/formulario/:id?', auth(), (req, res) => {
+	getNews(req.params.id).then(news => {
+		res.render('admin/newsForm', {
+			news,
+		})
+	}).catch(error => {
+		req.session.message = error
+		res.redirect('back')
+	}).finally(() => {
+		delete req.session.message
+		req.session.save()
+	})
 })
 
 router.post('/formulario', auth(), (req, res) => {

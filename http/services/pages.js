@@ -15,11 +15,11 @@ const getPages = () => new Promise((resolve, reject) => {
 const getPage = id => new Promise((resolve, reject) => {
 	const db = mysql()
 	const query = `SELECT * FROM pages WHERE id = ${db.escape(id)}`
-	db.query(query, (error, result) => {
+	db.query(query, (error, [result]) => {
 		if (error) {
 			reject(error.sqlMessage)
 		} else {
-			resolve(result[0])
+			resolve(result)
 		}
 	})
 })

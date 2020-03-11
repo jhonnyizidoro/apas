@@ -4,11 +4,11 @@ const getApp = () => new Promise((resolve, reject) => {
 	const db = mysql()
 	const query = 'SELECT * FROM apps'
 
-	db.query(query, (error, result) => {
+	db.query(query, (error, [result]) => {
 		if (error) {
 			reject(error.sqlMessage)
 		} else {
-			resolve(result[0])
+			resolve(result)
 		}
 	})
 })

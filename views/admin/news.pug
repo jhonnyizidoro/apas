@@ -9,16 +9,16 @@ block Content
 			button.button.button--orange(aria-label="Clique para realizar sua pesquisa", type="submit") #[.button--icon.icon.icon--search]
 			a.button.button--green(href="/admin/noticias/formulario") ADICIONAR NOTÍCIA
 	section.cards
-		each auxNews in news
+		each news in allNews
 			.card__wrapper
 				.card
 					figure.card__figure
-						img.card__image(data-src=auxNews.image, alt=auxNews.title, title=auxNews.title, loading="lazy")
-					h1.card__title=auxNews.title
+						img.card__image(data-src=news.image, alt=news.title, title=news.title, loading="lazy")
+					h1.card__title=news.title
 					.card__footer
 						.card__small
 							.card__small__icon.icon.icon--calendar
-							.card__small__text=formatDate(auxNews.created_at)
+							.card__small__text=formatDate(news.created_at)
 						.card__buttons
-							a.button.button--green.button--small(href=`/admin/noticias/formulario/${auxNews.id}`) #[.icon.icon--edit]
-							a.button.button--orange.button--small(href=`/admin/noticias/status/${auxNews.id}`) #[.icon.icon--delete]
+							a.button.button--green.button--small(href=`/admin/noticias/formulario/${news.id}`) #[.icon.icon--edit]
+							a.button.button--orange.button--small(href=`/admin/noticias/status/${news.id}`) #[.icon.icon--delete]
