@@ -1,4 +1,13 @@
-const formatDate = date => `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} - ${date.getUTCHours()}:${date.getUTCMinutes()}`
+const formatDate = date => {
+	const formatted = {
+		day: `0${date.getDate()}`.slice(-2),
+		month: `0${date.getMonth() + 1}`.slice(-2),
+		year: date.getFullYear(),
+		hours: `0${date.getUTCHours()}`.slice(-2),
+		minutes: `0${date.getUTCMinutes()}`.slice(-2),
+	}
+	return `${formatted.day}/${formatted.month}/${formatted.year} - ${formatted.hours}:${formatted.minutes}`
+}
 const textPreview = string => {
 	const stripped = string.replace(/<[^>]*>/g, '').slice(0, 300)
 	return string.length > 300 ? `${stripped}...` : stripped
