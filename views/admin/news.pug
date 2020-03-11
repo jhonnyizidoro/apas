@@ -2,7 +2,7 @@ extends templates/main
 block Content
 	form.default
 		.default__group
-			select.default__select(name="status", aria-label="Selecione a ordenação")
+			select.default__select(name="status", aria-label="Selecione o status")
 				option(value="1") Notícias ativas
 				option(value="0") Notícias Excluídas
 			input.default__input(type="text", name="title", placeholder="Título da notícia", aria-label="Busque sua notícia")
@@ -16,9 +16,9 @@ block Content
 						img.card__image(data-src=auxNews.image, alt=auxNews.title, title=auxNews.title, loading="lazy")
 					h1.card__title=auxNews.title
 					.card__footer
-						.card__date
-							.card__date__icon.icon.icon--calendar
-							.card__date__text=formatDate(auxNews.created_at)
+						.card__small
+							.card__small__icon.icon.icon--calendar
+							.card__small__text=formatDate(auxNews.created_at)
 						.card__buttons
 							a.button.button--green.button--small(href=`/admin/noticias/formulario/${auxNews.id}`) #[.icon.icon--edit]
 							a.button.button--orange.button--small(href=`/admin/noticias/status/${auxNews.id}`) #[.icon.icon--delete]

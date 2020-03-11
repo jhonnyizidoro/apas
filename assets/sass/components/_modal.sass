@@ -1,0 +1,27 @@
+.modal
+	+position(0, 0, $p: fixed)
+	+size(100%)
+	background: rgba($black, .3)
+	visibility: hidden
+	&__close
+		+position(0, 0)
+		+font(1.3rem, $c: $white)
+		background: $muted
+		box-shadow: $shadow-2
+		border-radius: 50%
+		cursor: pointer
+		padding: 6px 10px
+		transform: translate(50%, -50%)
+	&__content
+		+position(50%, 50%)
+		background: $white
+		border-radius: 8px 0 8px 8px
+		box-shadow: $shadow-1
+		max-width: 400px
+		padding: 20px 20px 0
+		transform: translate(50%, -50%) scale(0)
+		transition: 350ms
+	&--visible
+		visibility: visible
+		.modal__content
+			transform: translate(50%, -50%)

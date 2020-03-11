@@ -37,7 +37,7 @@ CREATE TABLE apps (
     instagram VARCHAR(255) DEFAULT NULL,
     facebook VARCHAR(255) DEFAULT NULL,
     instagram_token VARCHAR(255) DEFAULT NULL,
-    google_token VARCHAR(255) DEFAULT NULL,
+    google_maps_iframe VARCHAR(255) DEFAULT NULL,
     address VARCHAR(255) NOT NULL,
     business_hours VARCHAR(255) NOT NULL
 );

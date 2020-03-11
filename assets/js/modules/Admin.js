@@ -58,9 +58,22 @@ const phoneDeleteButtons = buttons => {
 	})
 }
 
+const modal = () => {
+	const triggers = document.querySelectorAll('[data-modal]')
+	const closeButtons = document.querySelectorAll('.modal__close')
+	on('click', closeButtons, closeButton => {
+		closeButton.parentElement.parentElement.classList.remove('modal--visible')
+	})
+	on('click', triggers, trigger => {
+		const modal = document.getElementById(trigger.dataset.modal)
+		modal.classList.add('modal--visible')
+	})
+}
+
 export {
 	navbar,
 	tinyMCE,
 	preview,
 	phoneInput,
+	modal,
 }
