@@ -3,7 +3,8 @@ const auth = require('./admin/auth'),
 	news = require('./admin/news'),
 	upload = require('./admin/upload'),
 	contact = require('./admin/contact'),
-	users = require('./admin/users')
+	users = require('./admin/users'),
+	pages = require('./admin/pages')
 
 module.exports = app => {
 	app.use('/autenticacao', auth)
@@ -11,5 +12,6 @@ module.exports = app => {
 	app.use('/admin/upload', upload)
 	app.use('/admin/contato', contact)
 	app.use('/admin/usuarios', users)
+	app.use('/admin/paginas', pages)
 	app.use('*', error)
 }
