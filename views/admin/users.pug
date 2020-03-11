@@ -8,16 +8,26 @@ block Content
 			input.default__input(type="text", name="email", placeholder="E-mail do usuário", aria-label="Insira o e-mail do usuário")
 			button.button.button--orange(aria-label="Clique para realizar sua pesquisa", type="submit") #[.button--icon.icon.icon--search]
 			button.button.button--green(type="button", aria-label="Clique para adicionar outro usuário", data-modal="user") ADICIONAR USUÁRIO
-	section.cards
-		each user in users
-			=user.email
+		table.table
+			tr.table__row
+				th.table__cell E-mail
+				th.table__cell Perfil
+				th.table__cell Ações
+			each user in users
+				tr.table__row
+					td.table__cell=user.email
+					td.table__cell=user.admin ? 'Administrador' : 'Usuário'
+					td.table__cell
+						a.table__link(href=`/admin/usuarios/perfil/${user.id}`) Alterar perfil
+						a.table__link(href=`/admin/usuarios/senha/${user.id}`) Gerar nova senha
+						a.table__link(href=`/admin/usuarios/status/${user.id}`) Desativar
 
 	.modal#user
 		.modal__content
 			span.modal__close ×
-			form.default
+			form.default(action="/admin/usuarios", method="POST")
 				input.default__input(type="text", name="email", placeholder="E-mail", aria-label="Insira o e-mail do usuário")
-				select.default__select(name="admin")
+				select.default__select(name="admin", aria-label="Selecione o perfil do usuário")
 					option(value="") Perfil
 					option(value="0") Usuário
 					option(value="1") Administrador

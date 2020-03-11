@@ -12,6 +12,58 @@ const getUsers = () => new Promise((resolve, reject) => {
 	})
 })
 
+const saveUser = data => new Promise((resolve, reject) => {
+	const db = mysql()
+	const query = `INSERT INTO users (email, password, admin) VALUES (${db.escape(data.email)}, ${db.escape(data.password)}, ${db.escape(data.admin)})`
+	db.query(query, (error, result) => {
+		if (error) {
+			reject(error.sqlMessage)
+		} else {
+			resolve(result)
+		}
+	})
+})
+
+const changeUserProfile = id => new Promise((resolve, reject) => {
+	const db = mysql()
+	const query = `UPDATE users SET admin = !admin WHERE id = ${db.escape(id)}`
+	db.query(query, (error, result) => {
+		if (error) {
+			reject(error.sqlMessage)
+		} else {
+			resolve(result)
+		}
+	})
+})
+
+const changeUserPassword = data => new Promise((resolve, reject) => {
+	const db = mysql()
+	const query = `UPDATE users SET password = ${db.escape(data.password)} WHERE id = ${db.escape(data.id)}`
+	db.query(query, (error, result) => {
+		if (error) {
+			reject(error.sqlMessage)
+		} else {
+			resolve(result)
+		}
+	})
+})
+
+const changeUserStatus = id => new Promise((resolve, reject) => {
+	const db = mysql()
+	const query = `UPDATE users SET status = !status WHERE id = ${db.escape(id)}`
+	db.query(query, (error, result) => {
+		if (error) {
+			reject(error.sqlMessage)
+		} else {
+			resolve(result)
+		}
+	})
+})
+
 module.exports = {
 	getUsers,
+	saveUser,
+	changeUserProfile,
+	changeUserStatus,
+	changeUserPassword,
 }

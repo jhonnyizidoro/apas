@@ -1,0 +1,22 @@
+.table
+	border-collapse: collapse
+	border-radius: 10px
+	box-shadow: $shadow-1
+	overflow: hidden
+	padding: 0
+	text-align: left
+	width: 100%
+	&__row
+		&:nth-child(even)
+			background: $white
+	&__cell
+		padding: 15px 10px
+	&__text,
+	&__link
+		color: $muted
+	&__link
+		text-decoration: underline
+		&:not(:last-of-type)
+			border-right: 1px solid $light
+			margin-right: 5px
+			padding-right: 10px
