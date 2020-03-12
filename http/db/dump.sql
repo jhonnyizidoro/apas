@@ -71,3 +71,4 @@ INSERT INTO phones (type, number) VALUES ('Comercial', '(41) 9 9999-9999'),
                                          ('WhatsApp', '(41) 3333-3333');
 INSERT INTO users (email, password, admin) VALUES ('admin@gmail.com', 123456, TRUE);
 INSERT INTO users (email, password) VALUES ('user@gmail.com', 123456);
+INSERT INTO banners (image, link) VALUES ('https://s3.ecompletocarros.dev/images/lojas/108/banners/177/banner_image_1578265359_9b317d59e1fd0132796bb53541b66dc7.jpeg', 'https://www.afancarmultimarcas.com.br/')

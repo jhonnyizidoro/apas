@@ -1,5 +1,7 @@
 .cards
-	+flex(center, $w: wrap)
+	+columns(3)
+	+fullhd
+		+columns(4)
 
 .card
 	background: $white
@@ -10,7 +12,6 @@
 	padding-bottom: 52px
 	position: relative
 	transition: 350ms $cubic-bezier
-	width: 300px
 	&__wrapper
 		padding: 10px
 	&__figure

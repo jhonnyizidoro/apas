@@ -4,7 +4,8 @@ const auth = require('./admin/auth'),
 	upload = require('./admin/upload'),
 	contact = require('./admin/contact'),
 	users = require('./admin/users'),
-	pages = require('./admin/pages')
+	pages = require('./admin/pages'),
+	config = require('./admin/config')
 
 module.exports = app => {
 	app.use('/autenticacao', auth)
@@ -13,5 +14,6 @@ module.exports = app => {
 	app.use('/admin/contato', contact)
 	app.use('/admin/usuarios', users)
 	app.use('/admin/paginas', pages)
+	app.use('/admin/configuracoes', config)
 	app.use('*', error)
 }
