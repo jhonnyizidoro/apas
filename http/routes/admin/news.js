@@ -33,12 +33,12 @@ router.get('/formulario/:id?', auth(), (req, res) => {
 })
 
 router.post('/formulario', auth(), (req, res) => {
-	const image = uploadImage(req.files.image).location
 	const data = {
-		image,
+		id: req.body.id,
 		title: req.body.title,
 		content: req.body.content,
 		user_id: req.session.user.id,
+		image: req.files ? uploadImage(req.files.image).location : false,
 	}
 	saveNews(data).then(() => {
 		req.session.message = 'Notícia salva com sucesso.'

@@ -14,7 +14,12 @@ const getAllNews = () => new Promise((resolve, reject) => {
 
 const saveNews = data => new Promise((resolve, reject) => {
 	const db = mysql()
-	const query = `INSERT INTO news (title, image, content, user_id) VALUES (${db.escape(data.title)}, ${db.escape(data.image)}, ${db.escape(data.content)}, ${db.escape(data.user_id)})`
+	let query
+	if (data.id) {
+		query = `UPDATE news SET title = ${db.escape(data.title)}, image = ${data.image ? db.escape(data.image) : 'image'}, content = ${db.escape(data.content)} WHERE id = ${db.escape(data.id)}`
+	} else {
+		query = `INSERT INTO news (title, image, content, user_id) VALUES (${db.escape(data.title)}, ${db.escape(data.image)}, ${db.escape(data.content)}, ${db.escape(data.user_id)})`
+	}
 	db.query(query, (error, result) => {
 		if (error) {
 			reject(error.sqlMessage)
