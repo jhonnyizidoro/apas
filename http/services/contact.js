@@ -28,15 +28,14 @@ const getPhones = () => new Promise((resolve, reject) => {
 
 const savePhones = data => new Promise((resolve, reject) => {
 	const db = mysql()
-	let query = 'TRUNCATE phones; REPLACE INTO phones (type, number) VALUES'
+	let query = 'TRUNCATE phones;'
 
 	if (!Array.isArray(data.phone)) {
 		data.phone = [data.phone]
 		data.type = [data.type]
 	}
 
-	data.phone.forEach((number, index) => query += ` (${db.escape(data.type[index])}, ${db.escape(number)}),`)
-	query = query.slice(0, -1)
+	data.phone.forEach((number, index) => query += `INSERT INTO phones (type, number) VALUES (${db.escape(data.type[index])}, ${db.escape(number)});`)
 
 	db.query(query, (error, result) => {
 		if (error) {
