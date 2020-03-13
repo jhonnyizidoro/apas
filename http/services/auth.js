@@ -1,8 +1,8 @@
 const mysql = require('../db/mysql')
 
-const login = data => new Promise((resolve, reject) => {
+const getUser = data => new Promise((resolve, reject) => {
 	const db = mysql()
-	const query = `SELECT * FROM users WHERE email = ${db.escape(data.email)} AND password = ${db.escape(data.password)}`
+	const query = `SELECT * FROM users WHERE email = ${db.escape(data.email)}`
 	db.query(query, (error, [result]) => {
 		if (error) {
 			reject(error.sqlMessage)
@@ -15,5 +15,5 @@ const login = data => new Promise((resolve, reject) => {
 })
 
 module.exports = {
-	login,
+	getUser,
 }

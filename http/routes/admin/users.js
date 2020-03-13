@@ -18,14 +18,14 @@ router.get('/', auth(), (req, res) => {
 })
 
 router.post('/', auth(), (req, res) => {
-	const password = Math.random().toString(36).substring(6)
+	const password = bcrypt()
 	const data = {
-		password,
+		password: password.hash,
 		email: req.body.email,
 		admin: req.body.admin,
 	}
 	saveUser(data).then(() => {
-		req.session.message = `Usuário inserido. Senha de acesso: ${password}`
+		req.session.message = `Usuário inserido. Senha de acesso: ${password.text}`
 		res.redirect('/admin/usuarios')
 	}).catch(error => {
 		req.session.message = error
@@ -44,13 +44,13 @@ router.get('/perfil/:id', auth(), (req, res) => {
 })
 
 router.get('/senha/:id', auth(), (req, res) => {
-	const password = Math.random().toString(36).substring(6)
+	const password = bcrypt()
 	const data = {
-		password,
+		password: password.hash,
 		id: req.params.id
 	}
 	changeUserPassword(data).then(() => {
-		req.session.message = `Senha atualizada com sucesso: ${password}`
+		req.session.message = `Senha atualizada com sucesso: ${password.text}`
 		res.redirect('/admin/usuarios')
 	}).catch(error => {
 		req.session.message = error

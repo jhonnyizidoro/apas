@@ -1,6 +1,7 @@
 const express = require('express'),
 	router = express.Router(),
-	{login} = require('../../services/auth')
+	{getUser} = require('../../services/auth'),
+	{compareSync} = require('bcryptjs')
 
 router.get('/', (req, res) => {
 	res.render('admin/login')
@@ -16,9 +17,14 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-	login(req.body).then(user => {
-		req.session.user = user
-		res.redirect('/admin/noticias')
+	getUser(req.body).then(user => {
+		if (compareSync(req.body.password, user.password)) {
+			req.session.user = user
+			res.redirect('/admin/noticias')
+		} else {
+			req.session.message = 'Não encontramos nenhum usuário com essas credenciais.'
+			res.redirect('/autenticacao')
+		}
 	}).catch(error => {
 		req.session.message = error
 		res.redirect('/autenticacao')

@@ -1,4 +1,13 @@
+const {hashSync} = require('bcryptjs')
+
 const getParam = param => new URL(url).searchParams.get(param)
+
+const bcrypt = password => {
+	const encrypted = {}
+	encrypted.text = password || Math.random().toString(36).substring(6)
+	encrypted.hash = hashSync(encrypted.text, 8)
+	return encrypted
+}
 
 const formatDate = date => {
 	const formatted = {
@@ -57,4 +66,5 @@ module.exports = {
 	formatDate,
 	textPreview,
 	getParam,
+	bcrypt,
 }
