@@ -1,11 +1,11 @@
 extends templates/main
 block Content
-	form.default
+	form.default(action="/admin/noticias", method="GET")
 		.default__group
 			select.default__select(name="status", aria-label="Selecione o status")
 				option(value="1") Notícias ativas
-				option(value="0") Notícias Excluídas
-			input.default__input(type="text", name="title", placeholder="Título da notícia", aria-label="Busque sua notícia")
+				option(value="0", selected=getParam('status') === '0') Notícias Excluídas
+			input.default__input(type="text", name="title", placeholder="Título da notícia", aria-label="Busque sua notícia", value=getParam('title'))
 			button.button.button--orange(aria-label="Clique para realizar sua pesquisa", type="submit") #[.button--icon.icon.icon--search]
 			a.button.button--green(href="/admin/noticias/formulario") ADICIONAR NOTÍCIA
 	section.cards
@@ -21,4 +21,4 @@ block Content
 							.card__small__text=formatDate(news.created_at)
 						.card__buttons
 							a.button.button--green.button--small(href=`/admin/noticias/formulario/${news.id}`) #[.icon.icon--edit]
-							a.button.button--orange.button--small(href=`/admin/noticias/status/${news.id}`) #[.icon.icon--delete]
+							a.button.button--orange.button--small(href=`/admin/noticias/status/${news.id}`)=news.status ? 'EXCLUIR' : 'RESTAURAR'

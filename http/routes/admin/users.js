@@ -4,7 +4,7 @@ const express = require('express'),
 	{getUsers, saveUser, changeUserProfile, changeUserPassword, changeUserStatus} = require('../../services/users')
 
 router.get('/', auth(), (req, res) => {
-	getUsers().then(users => {
+	getUsers(req.query).then(users => {
 		res.render('admin/users', {
 			users,
 		})

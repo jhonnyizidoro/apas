@@ -5,7 +5,7 @@ const express = require('express'),
 	{uploadImage} = require('../../services/image')
 
 router.get('/', auth(), (req, res) => {
-	getAllNews().then(allNews => {
+	getAllNews(req.query).then(allNews => {
 		res.render('admin/news', {
 			allNews,
 		})

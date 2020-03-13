@@ -1,3 +1,5 @@
+const getParam = param => new URL(url).searchParams.get(param)
+
 const formatDate = date => {
 	const formatted = {
 		day: `0${date.getDate()}`.slice(-2),
@@ -54,4 +56,5 @@ module.exports = {
 	getSchemaJSON,
 	formatDate,
 	textPreview,
+	getParam,
 }

@@ -1,8 +1,8 @@
 const mysql = require('../db/mysql')
 
-const getAllNews = () => new Promise((resolve, reject) => {
+const getAllNews = params => new Promise((resolve, reject) => {
 	const db = mysql()
-	const query = `SELECT * FROM news WHERE status ORDER BY id DESC`
+	const query = `SELECT * FROM news WHERE status = ${params.status ? db.escape(params.status) : 1} AND title LIKE '%${params.title || ''}%'  ORDER BY id DESC`
 	db.query(query, (error, result) => {
 		if (error) {
 			reject(error.sqlMessage)

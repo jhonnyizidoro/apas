@@ -1,11 +1,11 @@
 extends templates/main
 block Content
-	form.default
+	form.default(action="/admin/usuarios", method="GET")
 		.default__group
 			select.default__select(name="status", aria-label="Selecione o status")
 				option(value="1") Usuários ativos
-				option(value="0") Usuários inativos
-			input.default__input(type="text", name="email", placeholder="E-mail do usuário", aria-label="Insira o e-mail do usuário")
+				option(value="0", selected=getParam('status') === '0') Usuários inativos
+			input.default__input(type="text", name="email", placeholder="E-mail do usuário", aria-label="Insira o e-mail do usuário", value=getParam('email'))
 			button.button.button--orange(aria-label="Clique para realizar sua pesquisa", type="submit") #[.button--icon.icon.icon--search]
 			button.button.button--green(type="button", aria-label="Clique para adicionar outro usuário", data-modal="user") ADICIONAR USUÁRIO
 		table.table
@@ -20,7 +20,7 @@ block Content
 					td.table__cell
 						a.table__link(href=`/admin/usuarios/perfil/${user.id}`) Alterar perfil
 						a.table__link(href=`/admin/usuarios/senha/${user.id}`) Gerar nova senha
-						a.table__link(href=`/admin/usuarios/status/${user.id}`) Desativar
+						a.table__link(href=`/admin/usuarios/status/${user.id}`)=user.status ? 'Desativar' : 'Ativar'
 
 	.modal#user
 		.modal__content

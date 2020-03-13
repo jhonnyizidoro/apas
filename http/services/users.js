@@ -1,8 +1,8 @@
 const mysql = require('../db/mysql')
 
-const getUsers = () => new Promise((resolve, reject) => {
+const getUsers = params => new Promise((resolve, reject) => {
 	const db = mysql()
-	const query = `SELECT * FROM users WHERE status`
+	const query = `SELECT * FROM users WHERE status = ${params.status ? db.escape(params.status) : 1} AND email LIKE '%${params.email || ''}%'  ORDER BY id DESC`
 	db.query(query, (error, result) => {
 		if (error) {
 			reject(error.sqlMessage)
