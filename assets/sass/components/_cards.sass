@@ -35,8 +35,11 @@
 	&__small__icon
 		margin-right: 2px
 		transform: translateY(2px)
-	&__buttons>*:not(:last-child)
-		margin-right: 7px
+	&__buttons
+		flex-grow: 1
+		text-align: right
+		>*:not(:last-child)
+			margin-right: 7px
 	&:hover
 		box-shadow: $shadow-2
 		transform: scale(1.02)

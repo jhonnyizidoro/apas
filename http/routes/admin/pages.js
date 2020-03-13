@@ -1,10 +1,10 @@
 const express = require('express'),
 	router = express.Router(),
 	auth = require('../../middlewares/auth'),
-	{getPages, getPage, savePage} = require('../../services/pages')
+	{getPages, getPage, savePage, changePageStatus} = require('../../services/pages')
 
 router.get('/', auth(), (req, res) => {
-	getPages().then(pages => {
+	getPages(req.query).then(pages => {
 		res.render('admin/pages', {
 			pages,
 		})
@@ -17,7 +17,7 @@ router.get('/', auth(), (req, res) => {
 	})
 })
 
-router.get('/formulario/:id', auth(), (req, res) => {
+router.get('/formulario/:id?', auth(), (req, res) => {
 	getPage(req.params.id).then(page => {
 		res.render('admin/pagesForm', {
 			page,
@@ -34,6 +34,16 @@ router.get('/formulario/:id', auth(), (req, res) => {
 router.post('/formulario', auth(), (req, res) => {
 	savePage(req.body).then(() => {
 		req.session.message = 'Página salva com sucesso.'
+		res.redirect('/admin/paginas')
+	}).catch(error => {
+		req.session.message = error
+		res.redirect('/admin/paginas')
+	})
+})
+
+router.get('/status/:id', auth(), (req, res) => {
+	changePageStatus(req.params.id).then(() => {
+		req.session.message = 'Status alterado com sucesso.'
 		res.redirect('/admin/paginas')
 	}).catch(error => {
 		req.session.message = error

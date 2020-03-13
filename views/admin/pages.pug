@@ -1,5 +1,13 @@
 extends templates/main
 block Content
+	form.default(action="/admin/paginas", method="GET")
+		.default__group
+			select.default__select(name="status", aria-label="Selecione o status")
+				option(value="1") Páginas ativas
+				option(value="0", selected=getParam('status') === '0') Páginas Excluídas
+			input.default__input(type="text", name="content", placeholder="Conteúdo da página", aria-label="Busque sua página", value=getParam('content'))
+			button.button.button--orange(aria-label="Clique para realizar sua pesquisa", type="submit") #[.button--icon.icon.icon--search]
+			a.button.button--green(href="/admin/paginas/formulario") ADICIONAR PÁGINA
 	section.cards
 		each page in pages
 			.card__wrapper
@@ -7,4 +15,6 @@ block Content
 					.card__title=page.name
 					.card__text=textPreview(page.content)
 					.card__footer
-						a.button.button--green.button--fullwidth.button--small(href=`/admin/paginas/formulario/${page.id}`) EDITAR CONTEÚDO
+						.card__buttons
+							a.button.button--green.button--small(href=`/admin/paginas/formulario/${page.id}`) #[.icon.icon--edit]
+							a.button.button--orange.button--small(href=`/admin/paginas/status/${page.id}`)=page.status ? 'EXCLUIR' : 'RESTAURAR'
