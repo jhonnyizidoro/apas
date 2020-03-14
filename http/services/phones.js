@@ -1,18 +1,5 @@
 const mysql = require('../db/mysql')
 
-const getApp = () => new Promise((resolve, reject) => {
-	const db = mysql()
-	const query = 'SELECT * FROM apps'
-
-	db.query(query, (error, [result]) => {
-		if (error) {
-			reject(error.sqlMessage)
-		} else {
-			resolve(result)
-		}
-	})
-})
-
 const getPhones = () => new Promise((resolve, reject) => {
 	const db = mysql()
 	const query = 'SELECT * FROM phones'
@@ -47,21 +34,7 @@ const savePhones = data => new Promise((resolve, reject) => {
 
 })
 
-const saveApp = data => new Promise((resolve, reject) => {
-	const db = mysql()
-	const query = `UPDATE apps SET facebook = ${db.escape(data.facebook)}, instagram = ${db.escape(data.instagram)}, address = ${db.escape(data.address)}, business_hours = ${db.escape(data.business_hours)} WHERE id = 1`
-	db.query(query, (error, result) => {
-		if (error) {
-			reject(error.sqlMessage)
-		} else {
-			resolve(result)
-		}
-	})
-})
-
 module.exports = {
 	getPhones,
-	getApp,
 	savePhones,
-	saveApp,
 }

@@ -1,8 +1,9 @@
 const express = require('express'),
 	router = express.Router(),
 	auth = require('../../middlewares/auth'),
-	{getBanners, getApp, saveBanners, saveApp} = require('../../services/config'),
-	{uploadImage} = require('../../services/image')
+	{getBanners, saveBanners} = require('../../services/banners'),
+	{getApp, saveApp} = require('../../services/apps'),
+	{uploadImage} = require('../../services/files')
 
 router.get('/', auth(), (req, res) => {
 	Promise.all([getBanners(), getApp()]).then(([banners, app]) => {

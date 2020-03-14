@@ -2,7 +2,7 @@ const express = require('express'),
 	router = express.Router(),
 	auth = require('../../middlewares/auth'),
 	{getAllNews, saveNews, changeNewsStatus, getNews} = require('../../services/news'),
-	{uploadImage} = require('../../services/image')
+	{uploadImage} = require('../../services/files')
 
 router.get('/', auth(), (req, res) => {
 	getAllNews(req.query).then(allNews => {

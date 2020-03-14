@@ -1,7 +1,8 @@
 const express = require('express'),
 	router = express.Router(),
 	auth = require('../../middlewares/auth'),
-	{getPhones, getApp, savePhones, saveApp} = require('../../services/contact')
+	{getPhones, savePhones} = require('../../services/phones'),
+	{getApp, saveApp} = require('../../services/apps')
 
 router.get('/', auth(), (req, res) => {
 	Promise.all([getPhones(), getApp()]).then(([phones, app]) => {

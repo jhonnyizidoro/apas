@@ -1,6 +1,6 @@
 const express = require('express'),
 	router = express.Router(),
-	{getUser} = require('../../services/auth'),
+	{getUserByEmail} = require('../../services/users'),
 	{compareSync} = require('bcryptjs')
 
 router.get('/', (req, res) => {
@@ -17,7 +17,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-	getUser(req.body).then(user => {
+	getUserByEmail(req.body.email).then(user => {
 		if (compareSync(req.body.password, user.password)) {
 			req.session.user = user
 			res.redirect('/admin/noticias')
