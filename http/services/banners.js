@@ -17,8 +17,11 @@ const saveBanners = data => new Promise((resolve, reject) => {
 	const db = mysql()
 
 	if (!Array.isArray(data.id)) {
-		data.link = [data.link]
 		data.id = [data.id]
+	}
+
+	if (!Array.isArray(data.link)) {
+		data.link = [data.link]
 	}
 
 	let query = `DELETE FROM banners WHERE id NOT IN (${db.escape(data.id)});`
