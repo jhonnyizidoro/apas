@@ -74,6 +74,18 @@ const changeUserStatus = id => new Promise((resolve, reject) => {
 	})
 })
 
+const updateUserPassword = data => new Promise((resolve, reject) => {
+	const db = mysql()
+	const query = `UPDATE users SET password = ${db.escape(data.password)} WHERE id = ${db.escape(data.id)}`
+	db.query(query, (error, result) => {
+		if (error) {
+			reject(error.sqlMessage)
+		} else {
+			resolve(result)
+		}
+	})
+})
+
 module.exports = {
 	getUsers,
 	saveUser,
@@ -81,4 +93,5 @@ module.exports = {
 	changeUserStatus,
 	changeUserPassword,
 	getUserByEmail,
+	updateUserPassword,
 }

@@ -18,7 +18,15 @@ nav.navbar
 	.navbar__bottom
 		.navbar__text=session.user.email
 		a.navbar__strong(href="/autenticacao/logout") Sair
-		a.navbar__strong(href="/autenticacao/senha") Alterar senha
+		span.navbar__strong(data-modal="password") Alterar senha
+
+	.modal#password
+		.modal__content
+			span.modal__close ×
+			form.default(action="/autenticacao/senha", method="POST")
+				input.default__input(type="password", name="password", placeholder="Nova senha", aria-label="Nova senha")
+				input.default__input(type="password", name="password_confirmation", placeholder="Confirme a senha", aria-label="Confirme a senha")
+				button.button.button--green.button--fullwidth(type="submit", aria-label="Alterar senha") ALTERAR SENHA
 
 script.
 	document.addEventListener('DOMContentLoaded', function () {

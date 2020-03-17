@@ -1,7 +1,8 @@
 const express = require('express'),
 	router = express.Router(),
-	{getUserByEmail} = require('../../services/users'),
-	{compareSync} = require('bcryptjs')
+	{getUserByEmail, updateUserPassword} = require('../../services/users'),
+	{compareSync, hashSync} = require('bcryptjs'),
+	auth = require('../../middlewares/auth')
 
 router.get('/', (req, res) => {
 	res.render('admin/login')
@@ -9,7 +10,7 @@ router.get('/', (req, res) => {
 	req.session.save()
 })
 
-router.get('/logout', (req, res) => {
+router.get('/logout', auth(), (req, res) => {
 	delete req.session.user
 	req.session.message = 'Logout efetuado com sucesso!'
 	req.session.save()
@@ -29,6 +30,26 @@ router.post('/', (req, res) => {
 		req.session.message = error
 		res.redirect('/autenticacao')
 	})
+})
+
+router.post('/senha', auth(), (req, res) => {
+	if (req.body.password !== req.body.password_confirmation) {
+		req.session.message = 'As senhas não coincidem.'
+		res.redirect('back')
+	} else {
+		const password = hashSync(req.body.password, 8)
+		const data = {
+			password,
+			id: req.session.user.id
+		}
+		updateUserPassword(data).then(() => {
+			req.session.message = 'Senha atualizada com sucesso.'
+			res.redirect('back')
+		}).catch(error => {
+			req.session.message = error
+			res.redirect('/autenticacao')
+		})
+	}
 })
 
 module.exports = router
